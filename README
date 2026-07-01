@@ -1,0 +1,59 @@
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+# ------------ Newsletters Page "Les Echos" ------------#
+This project implements a newsletters management page for Les Echos, allowing users to discover and subscribe to newsletters grouped by editorial site. The UI adapts dynamically based on the user's subscription rights displaying different CTAs depending on which newsletters they have access to.
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+## Tech Stack
+Framework ::: Next.js 16 (App Router) ,
+Language ::: TypeScript 5.7 ,
+Styling ::: Tailwind CSS v4 ,
+Fonts ::: next/font/google
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+## Architecture
+app/
+├── globals.css              # Design tokens (color system, font vars)
+├── layout.tsx               # Root layout 
+└── page.tsx                 # Entry point 
+
+components/
+├── newsletters-intro.tsx    # Static header
+├── newsletter-section.tsx   # Section site
+└── newsletter-card.tsx      # Individual newsletter card
+
+lib/
+├── types.ts                 # Shared TypeScript interfaces (Newsletter, User, Right...)
+
+├── newsletters.ts           # Business logic (fetchNewsletters, hasAccess groupBySite)
+
+├── utils.ts                  
+└── mocks/
+    ├── newsletters.ts   # Simulated API data
+    └── user.ts          # Mocked user profiles
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+### Key Design Decisions
+
+**Server Components first**
+**CSS-native design tokens (Tailwind v4)**
+**Profile simulation via URL**
+The active user profile is driven by a `?profile=` query parameter (`one`, `multiple`, `none`), enabling reviewers to test all access scenarios without any UI toggle — keeping the page a pure Server Component with no client-side state.
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+## Getting Started
+# 1---Clone the repository
+git clone https://github.com/Wiem8/echos-next-test.git
+cd nechos-next-test
+# 2---Install dependencies
+npm install
+# 3---Start development server
+npm run dev
+==========>
+Open [http://localhost:3000] in your browser.
+### Testing Different User Profiles
+Partial access ::: 1 subscription (RIGHT_1) ===> URL:::'localhost:3000'
+
+Full access ::: 2 subscriptions (RIGHT_1 + RIGHT_2) ===> URL:::'localhost:3000/?profile=multiple'
+
+No access ::: No subscription===> URL:::'localhost:3000/?profile=none'
+## Available Scripts
+
+npm run dev      # Start dev server with hot reload → http://localhost:3000
+npm run build    # Production build
+npm run start    # Start production server (after build)
