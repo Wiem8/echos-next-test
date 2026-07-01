@@ -1,0 +1,18 @@
+# Dependency
+node_modules
+
+# Next.js
+.next/
+out/
+
+# Environnement Variables
+.env
+.env*.local
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+.DS_Store
+Thumbs.db
+*.log
